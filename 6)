@@ -1,0 +1,30 @@
+#include <iostream>
+#include <fstream>
+
+
+int main()
+{
+    int n = 10;
+    char out[128], in[128];
+    std::cout << "Input outFile name : ";
+    std::cin >> out;
+    std::cout << "Input inFile name :";
+    std::cin >> in;
+    std::fstream outFile;
+    outFile.open(out);
+    if (!outFile) {
+        std::cout << "Can not open File" << out << std::endl;
+    }
+    std::ofstream inFile;
+    inFile.open(in);
+    if (!inFile) {
+        std::cout << "Can not open File" << in << std::endl;
+    }
+    char d;
+    while (outFile.peek() != EOF) {
+        outFile >> d;
+        inFile << d;
+    }
+    outFile.close();
+    inFile.close();
+}
